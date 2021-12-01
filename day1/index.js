@@ -18,10 +18,15 @@ async function processLineByLine() {
     }
 
     let counter = 0;
-    for (let i = 1; i < numbers.length; i++) {
-        let prevNumber = numbers[i-1];
-
-        if (numbers[i] > prevNumber) {
+    for (let i = 3; i < numbers.length; i++) {
+        let first = numbers[i-3];
+        let second = numbers[i-2];
+        let third = numbers[i-1];
+        let fourth = numbers[i];
+        let prevSum = first + second + third;
+        let currentSum = second + third + fourth;
+        
+        if (currentSum > prevSum) {
             counter++;
         }
     }
