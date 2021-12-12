@@ -8,6 +8,7 @@ async function processLineByLine() {
     const DOWN = "down";
     let vertical = 0;
     let horizontal = 0;
+    let aim = 0;
 
     const rl = readline.createInterface({
         input: fileStream,
@@ -18,23 +19,23 @@ async function processLineByLine() {
     
     for await (const line of rl) {
         // Each line in input.txt will be successively available here as `line`.
-        console.log(line);
         const splittedLine = line.split(" ");
         const command = splittedLine[0];
         const value = parseInt(splittedLine[1]);
 
         if (command === FORWARD) {
             horizontal += value;
+            vertical += aim * value;
         }
         if (command === UP) {
-            vertical -= value;
+            aim -= value;
         }
         if (command === DOWN) {
-            vertical += value;
+            aim += value;
         }
     }
 
-    console.log(horizontal * vertical); // 1804520
+    console.log(horizontal * vertical); // 1971095320
 }
 
 processLineByLine();
